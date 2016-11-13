@@ -1,0 +1,53 @@
+﻿@model IEnumerable<NettbankMVC.Models.Konto>
+
+@{
+    ViewBag.Title = "Detaljer";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Kontoer for @ViewBag.KundeInfo</h3>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.kontoid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.kontonavn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.saldo)
+            </th>
+            <th>Valg</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kontoid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kontonavn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.saldo)
+                </td>
+                <td>
+                    @Html.ActionLink("Endre", "EndreKonto", new { id = item.kontoid, k=item.kundeid }) |
+                    @Html.ActionLink("Slett", "SlettKonto", new { id = item.kontoid, k=item.kundeid })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<div>
+    @Html.ActionLink("Opprett ny konto", "OpprettNyKonto", new { id = ViewBag.KundeID }, new { @class = "btn btn-warning" })
+</div>
+<br />
+<div>
+    @Html.ActionLink("Tilbake", "Kunder")
+</div>

@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="~/scripts/bootstrap.min.js"></script>
+    <script src="~/scripts/jquery-3.1.1.min.js"></script>
+    <script src="~/scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container">
+        <nav style="height:20px"class="navbar">
+            <div class="pull-left" style="margin-top:-10px;margin-left:5px">
+                <h1>Kontrollpanel</h1>
+            </div>
+            @if (Session["Verified"] == null) // Hvis en kunde er logget inn så skal inputbokser og logginn-knappen forsvinne
+            {
+                using (Html.BeginForm("Kontrollpanel", "Administrator", FormMethod.Post))
+                {
+                    <div class="form-inline pull-right" style="margin-right:5px">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Brukernavn" name="brukernavn" />
+                        </div>
+                        <div class="form-group">
+
+                            <input type="password" class="form-control" placeholder="Passord" name="passord" />
+                        </div>
+                        <input type="submit" value="Logg inn" class="btn btn-primary navbar-btn" />
+                    </div>
+                }
+
+
+
+                <br /><br /><br />
+
+            }
+            else
+            {
+                <div class="pull-right" style="margin-right:5px">
+                    <input type="button" value="Logg ut" onclick="location.href='/'" class="btn btn-danger navbar-btn" />
+                </div>
+            }
+
+        </nav> <!--End of navbar-->
+        @if (Session["Admin"]!=null)
+        {
+            <nav class="navbar navbar-default">
+                <ul class="nav navbar-nav">
+                    <li><a href="/Administrator/Kunder">Kunder</a></li>
+                    <li><a href="/Administrator/Kontoer">Kontoer</a></li>
+                    <li><a href="/Administrator/Betalinger">Transaksjoner</a></li>
+                </ul>
+
+            </nav>
+        }
+
+        @RenderBody()
+        <div class="panel panel-default">
+            <div class="panel-footer">
+                Copyright &copy; 2016 - Nettbank
+                <a class="pull-right" href=@Url.Action("Index", "Kunde")>Kunde</a>
+            </div>
+        </div>
+    </div> <!--End of container-->
+</body>
+</html>

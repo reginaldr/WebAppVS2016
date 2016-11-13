@@ -1,0 +1,56 @@
+﻿@model IEnumerable<NettbankMVC.Models.Kunde>
+
+@{
+    ViewBag.Title = "Kunder";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<p>
+    <button onclick="location.href='@Url.Action("Registrer", "Administrator/Registrer")'" class="btn btn-success">Registrer</button>
+</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Kundeliste</h3>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.kundeid)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fornavn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.etternavn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.personnummer)
+            </th>
+            <th>Valg</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.kundeid)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fornavn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.etternavn)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.personnummer)
+                </td>
+                <td>
+                    @Html.ActionLink("Endre", "EndreKunde", new { id = item.kundeid }) |
+                    @Html.ActionLink("Detaljer", "Detaljer", new { id = item.kundeid }) |
+                    @Html.ActionLink("Slett", "SlettKunde", new { id = item.kundeid })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<NettbankMVC.Models.Betaling>
+
+@{
+    ViewBag.Title = "Betalinger";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<p>
+    @Html.ActionLink("Gjør en transaksjon", "OpprettNyTransaksjon", null, new { @class = "btn btn-warning" })
+</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Transaksjoner</h3>
+    </div>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.belop)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.frakonto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tilkonto)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.belop)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.dato)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.frakonto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tilkonto)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Betalinger", new { id = item.betalingid }) |
+                    @Html.ActionLink("Details", "Betalinger", new { id = item.betalingid }) |
+                    @Html.ActionLink("Delete", "Betalinger", new { id = item.betalingid })
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>
