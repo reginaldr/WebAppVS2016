@@ -13,13 +13,21 @@ namespace NettbankMVC.Controllers
         // GET: Administrator
         public ActionResult Index()
         {
+            Session["Admin"] = null;
             return View();
         }
 
-        public ActionResult Kontrollpanel()
+        [HttpPost]
+        public ActionResult Kontrollpanel(string brukernavn, string passord)
         {
-            Session["Admin"] = true;
-            return View();
+            var db = new NettbankBLL();
+            if (db.adminrettigheter(brukernavn, passord))
+            {
+                Session["Admin"] = true;
+                return View();
+            }
+            else
+                return RedirectToAction("Index");
         }
 
         public ActionResult Kunder()

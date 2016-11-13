@@ -340,9 +340,25 @@ namespace NettbankMVC.DAL
 
         public bool adminrettigheter(string brukernavn, string passord)
         {
+            /*
             var db = new KundeContext();
-            return true;
+            var finn = from a in db.Administratorer
+                       where a.Brukernavn.Contains(brukernavn)
+                       select a.Passord;
+            if (finn == null)
+                return false;
+            else
+            {
+                if (finn.Equals(passord))
+                    return true;
+                else
+                    return false;
+            }
+            */
+            if (brukernavn == "Admin" && passord == "passord")
+                return true;
+            else
+                return false;
         }
-
     }
 }

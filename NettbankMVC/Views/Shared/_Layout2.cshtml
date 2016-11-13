@@ -15,7 +15,7 @@
             <div class="pull-left" style="margin-top:-10px;margin-left:5px">
                 <h1>Kontrollpanel</h1>
             </div>
-            @if (Session["Verified"] == null) // Hvis en kunde er logget inn så skal inputbokser og logginn-knappen forsvinne
+            @if (Session["Admin"] == null) // Hvis en kunde er logget inn så skal inputbokser og logginn-knappen forsvinne
             {
                 using (Html.BeginForm("Kontrollpanel", "Administrator", FormMethod.Post))
                 {
@@ -44,7 +44,7 @@
             }
 
         </nav> <!--End of navbar-->
-        @if (Session["Admin"]!=null)
+        @if (Session["Admin"]!= null)
         {
             <nav class="navbar navbar-default">
                 <ul class="nav navbar-nav">
